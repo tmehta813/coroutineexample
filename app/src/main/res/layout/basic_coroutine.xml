@@ -4,28 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.test.coroutines.ApiTimeoutActivity">
+    android:layout_height="match_parent">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click me"
+        android:text="Sleep thread"
+        android:minWidth="200dp"
+        android:textSize="14sp"
+        android:background="@android:color/holo_blue_light"
+        android:foreground="?android:selectableItemBackground"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".1"
+        android:padding="10dp"
         android:id="@+id/mainButton"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Launch and pause coroutine"
+        android:background="@android:color/holo_blue_light"
+        android:foreground="?android:selectableItemBackground"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:minWidth="200dp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainButton"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        app:layout_constraintVertical_bias=".1"
+        android:id="@+id/mainButton1"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Block thread using coroutine"
+        android:background="@android:color/holo_blue_light"
+        android:foreground="?android:selectableItemBackground"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:minWidth="200dp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainButton1"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        app:layout_constraintVertical_bias=".1"
+        android:id="@+id/mainButton2"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset counter"
+        android:background="@android:color/holo_orange_light"
+        android:foreground="?android:selectableItemBackground"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainButton2"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:minWidth="200dp"
+        android:textSize="14sp"
+        app:layout_constraintVertical_bias=".1"
+        android:id="@+id/mainButton3"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainButton"
+        app:layout_constraintTop_toBottomOf="@+id/mainButton3"
+        android:layout_marginTop="40dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:id="@+id/mainText"
         />
 

@@ -1,4 +1,4 @@
-package com.test.coroutines
+package com.test.coroutines.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,14 +17,15 @@ class JobsParallelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parallel_jobs)
-        parallelApiRequestUsingJob()
 
-        button.setOnClickListener {
-            setNewText("Clicked!!")
+        mainButton.setOnClickListener {
+            sqText.text = ""
+            parallelApiRequestUsingJob()
+        }
 
-          //  parallelApiRequestUsingJob()
-         //  parallelApiRequestUsingAsyncAwait()
-            parentJob.cancel()
+        mainButton1.setOnClickListener {
+            sqText.text = ""
+            parallelApiRequestUsingAsyncAwait()
         }
     }
 
@@ -33,46 +34,48 @@ class JobsParallelActivity : AppCompatActivity() {
         parentJob = CoroutineScope(IO).launch {
 
                 val job1 = launch {
-                    Log.v("Tarun", "Launching job1 in thread; ${Thread.currentThread().name}")
+                    setTextOnMainThread("Launching Api1 in thread: ${Thread.currentThread().name}")
                     val result1 = getResult1FromApi()
                     setTextOnMainThread("Got $result1")
                 }
 
                 val job2 = launch {
-                    Log.v("Tarun", "Launching job2 in thread; ${Thread.currentThread().name}")
+                    setTextOnMainThread("Launching Api2 in thread: ${Thread.currentThread().name}")
                     val result2 = getResult2FromApi()
                     setTextOnMainThread("Got $result2")
                 }
         }
 
         parentJob.invokeOnCompletion {
-            Log.v("Tarun", "ElapsedTime: ${System.currentTimeMillis() - startTime}")
+            setNewText("ElapsedTime: ${System.currentTimeMillis() - startTime}")
         }
     }
 
     private fun parallelApiRequestUsingAsyncAwait() {
         CoroutineScope(IO).launch {
+
             val elapsedTime = measureTimeMillis {
+
                 val result1 = async {
-                    Log.v("Tarun", "Launching job1 in thread; ${Thread.currentThread().name}")
+                    setTextOnMainThread("Launching Api1 in thread: ${Thread.currentThread().name}")
                     getResult1FromApi()
                 }
 
                 val result2 = async {
-                    Log.v("Tarun", "Launching job2 in thread; ${Thread.currentThread().name}")
+                    setTextOnMainThread("Launching Api2 in thread: ${Thread.currentThread().name}")
                     getResult2FromApi()
                 }
 
                 setTextOnMainThread("Got ${result1.await()}")
                 setTextOnMainThread("Got ${result2.await()}")
             }
-            Log.v("Tarun", "ElapsedTime:${elapsedTime}")
+            setTextOnMainThread("ElapsedTime:${elapsedTime}")
         }
     }
 
     private fun setNewText(text: String) {
-        val newText = textView.text.toString() + "\n$text"
-        textView.text = newText
+        val newText = sqText.text.toString() + "\n$text"
+        sqText.text = newText
     }
 
     private suspend fun setTextOnMainThread(input: String) {
@@ -82,7 +85,7 @@ class JobsParallelActivity : AppCompatActivity() {
     }
 
     private suspend fun getResult1FromApi(): String {
-        delay(4000)
+        delay(1000)
         return "Result #1"
     }
 

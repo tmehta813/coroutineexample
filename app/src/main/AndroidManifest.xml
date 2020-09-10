@@ -9,37 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-        <activity android:name="com.test.coroutines.MainActivity">
+        <activity android:name="com.test.coroutines.ui.activity.CoroutineBuilderActivity"/>
+        <activity android:name="com.test.coroutines.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.test.coroutines.AllScopesActivity"/>
-
-        <activity android:name="com.test.coroutines.BasicCoroutinesTestActivity"/>
-
-        <activity android:name="com.test.coroutines.NestedGlobalScopeActivity"/>
-
-
-        <activity android:name="com.test.coroutines.HandlingExceptionActivity"/>
-
-        <activity android:name="com.test.coroutines.SequentialCoroutinesActivity">
-
-        </activity>
-
-        <activity android:name="com.test.coroutines.JobsParallelActivity">
-
-        </activity>
-
-        <activity android:name="com.test.coroutines.CoroutinesJobActivity"/>
-
-        <activity android:name="com.test.coroutines.ApiTimeoutActivity"/>
-
+        <activity android:name="com.test.coroutines.ui.activity.AllScopesActivity" />
+        <activity android:name="com.test.coroutines.ui.activity.BasicCoroutinesTestActivity" />
+        <activity android:name="com.test.coroutines.ui.activity.NestedGlobalScopeActivity" />
+        <activity android:name="com.test.coroutines.ui.activity.HandlingExceptionActivity" />
+        <activity android:name="com.test.coroutines.ui.activity.SequentialCoroutinesActivity"/>
+        <activity android:name="com.test.coroutines.ui.activity.JobsParallelActivity"/>
     </application>
 
 </manifest>

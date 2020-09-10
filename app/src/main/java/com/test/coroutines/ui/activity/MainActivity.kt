@@ -1,4 +1,4 @@
-package com.test.coroutines
+package com.test.coroutines.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coroutineexamples.R
+import com.test.coroutines.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -13,7 +14,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        listOf(button1, button2, button3, button4, button5, button6, button7, button8).forEach {
+        listOf(button1, button2, button3, button4, button5, button6, button7).forEach {
             it.setOnClickListener(this)
         }
 
@@ -22,22 +23,20 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onClick(v: View?) {
         var intent: Intent? = null
         v.let {
-            when (it!!.id) {
+            when (it?.id) {
                 R.id.button1 -> intent =
                     Intent(this@MainActivity, BasicCoroutinesTestActivity::class.java)
                 R.id.button2 -> intent =
-                    Intent(this@MainActivity, AllScopesActivity::class.java)
+                    Intent(this@MainActivity, CoroutineBuilderActivity::class.java)
                 R.id.button3 -> intent =
-                    Intent(this@MainActivity, NestedGlobalScopeActivity::class.java)
-                R.id.button4 -> intent =
                     Intent(this@MainActivity, SequentialCoroutinesActivity::class.java)
-                R.id.button5 -> intent =
+                R.id.button4 -> intent =
                     Intent(this@MainActivity, JobsParallelActivity::class.java)
+                R.id.button5 -> intent =
+                    Intent(this@MainActivity, AllScopesActivity::class.java)
                 R.id.button6 -> intent =
-                    Intent(this@MainActivity, CoroutinesJobActivity::class.java)
+                    Intent(this@MainActivity, NestedGlobalScopeActivity::class.java)
                 R.id.button7 -> intent =
-                    Intent(this@MainActivity, ApiTimeoutActivity::class.java)
-                R.id.button8 -> intent =
                     Intent(this@MainActivity, HandlingExceptionActivity::class.java)
             }
 

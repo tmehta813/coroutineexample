@@ -1,4 +1,4 @@
-package com.test.coroutines
+package com.test.coroutines.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.coroutineexamples.R
+import com.test.coroutines.ScopeViewModel
 import kotlinx.android.synthetic.main.all_scope.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
@@ -22,18 +23,29 @@ class AllScopesActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ScopeViewModel::class.java)
         setListeners()
 
-        mainButton.setOnClickListener {
-            //customScope()
-            //lifeCycleScope()
+        customScope.setOnClickListener {
+            customScope()
+            finish()
+        }
+
+        lifeCycleScope.setOnClickListener {
+            lifeCycleScope()
+            finish()
+        }
+
+        globalScope.setOnClickListener {
             globalScope()
-          //  finish()
+            finish()
+        }
+
+        viewModelScope.setOnClickListener {
             viewModel.getString()
         }
     }
 
     private fun setListeners() {
         viewModel.liveData.observe(this, Observer {
-            Log.v("Tarun", "Result is: $it")
+            scopeText.text = "Result is: $it"
         })
     }
 
@@ -56,8 +68,8 @@ class AllScopesActivity : AppCompatActivity() {
     }
 
     private suspend fun doWork() {
-        Log.v("Tarun", "Job Started")
+        Log.v("Paytm", "Work Started")
         delay(5000)
-        Log.v("Tarun", "Job Ended")
+        Log.v("Paytm", "Work Ended")
     }
 }

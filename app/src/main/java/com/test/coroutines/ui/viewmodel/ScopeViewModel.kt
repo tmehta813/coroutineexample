@@ -10,14 +10,16 @@ import kotlinx.coroutines.withContext
 class ScopeViewModel : ViewModel() {
 
     private val mutableLiveData = MutableLiveData<String>()
-    val liveData: LiveData<String> = mutableLiveData
+    val liveData: LiveData<String>
+        get() = mutableLiveData
 
     fun getString() {
         viewModelScope.launch(IO) {
 
-            delay(4000)
+            delay(1000)
 
             val result = repositoryFunction()
+
             withContext(Main) {
                 mutableLiveData.value = result
             }
